@@ -1,20 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 40px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
+
 <body>
+
     <dialog id="miDialogo"> 
-    <p>Este es un mensaje en una ventana de diálogo.</p>
-    <button id="cerrar">Cerrar</button>
+        <p>Estamos aprendiendo a usar GIThub con Julian.</p>
+        <button id="cerrar">Cerrar</button>
     </dialog>
+
     <button id="abrir">Abrir diálogo</button>
+
 </body>
+
 <script>
     const dialogo = document.getElementById('miDialogo');
     document.getElementById('abrir').onclick = () => dialogo.showModal();
     document.getElementById('cerrar').onclick = () => dialogo.close();
 </script>
+
 </html>
