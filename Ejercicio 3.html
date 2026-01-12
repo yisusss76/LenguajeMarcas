@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag básico</title>
+</head>
+<body>
+
+  <div id="caja" draggable="true"
+       ondragstart="iniciarDrag(event)"
+       ondragend="finalizarDrag(event)"
+       style="width:120px;height:60px;background:#4caf50;color:white;
+       text-align:center;line-height:60px; cursor: grab;">
+    Arrástrame
+  </div>
+
+  <script>
+    const caja = document.getElementById('caja');
+
+    function iniciarDrag(evento) {
+      console.log('Empieza el drag');
+      caja.style.opacity = '0.7';
+      // Hace que el navegador considere que hay un "drag" real
+      evento.dataTransfer.setData('text/plain', 'caja');
+    }
+
+    function finalizarDrag(evento) {
+      console.log('Se soltó el elemento');
+      caja.style.opacity = '1';
+
+      // Colocamos el elemento donde se suelta el ratón
+      caja.style.position = 'absolute';
+      caja.style.left = evento.pageX - (caja.offsetWidth / 2) + 'px';
+      caja.style.top = evento.pageY - (caja.offsetHeight / 2) + 'px';
+    }
+  </script>
+
+</body>
+</html>
+
