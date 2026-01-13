@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Drag básico</title>
+    <meta charset="UTF-8">
+    <title>Drag and Drop básico</title>
 </head>
+
 <body>
 
-  <div id="caja" draggable="true"
-       ondragstart="iniciarDrag(event)"
-       ondragend="finalizarDrag(event)"
-       style="width:120px;height:60px;background:#4caf50;color:white;
-       text-align:center;line-height:60px; cursor: grab;">
-    Arrástrame
-  </div>
+    <!-- 
+        Este div se puede arrastrar gracias al atributo draggable="true".
+        El navegador permite coger el elemento con el ratón y moverlo.
+    -->
+    <div draggable="true"
+         ondragstart="inicioDrag(this)"
+         ondragend="finDrag(this)"
+         style="width:120px;height:60px;background:#4caf50;color:white;
+         text-align:center;line-height:60px;">
+        Arrástrame
+    </div>
 
-  <script>
-    const caja = document.getElementById('caja');
+    <script>
+        // Esta función se ejecuta cuando empieza el arrastre del elemento.
+        // Aquí sabemos que el usuario ha hecho clic y ha comenzado a moverlo.
+        function inicioDrag(elemento) {
+            console.log('Ha comenzado el arrastre');
+            elemento.style.background = 'orange'; // Cambiamos el color para verlo mejor
+        }
 
-    function iniciarDrag(evento) {
-      console.log('Empieza el drag');
-      caja.style.opacity = '0.7';
-      // Hace que el navegador considere que hay un "drag" real
-      evento.dataTransfer.setData('text/plain', 'caja');
-    }
-
-    function finalizarDrag(evento) {
-      console.log('Se soltó el elemento');
-      caja.style.opacity = '1';
-
-      // Colocamos el elemento donde se suelta el ratón
-      caja.style.position = 'absolute';
-      caja.style.left = evento.pageX - (caja.offsetWidth / 2) + 'px';
-      caja.style.top = evento.pageY - (caja.offsetHeight / 2) + 'px';
-    }
-  </script>
+        // Esta función se ejecuta cuando el usuario suelta el elemento.
+        // Indica que el arrastre ha terminado.
+        function finDrag(elemento) {
+            console.log('Ha terminado el arrastre');
+            elemento.style.background = '#4caf50'; // Vuelve al color original
+        }
+    </script>
 
 </body>
 </html>
-
